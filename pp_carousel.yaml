@@ -1,0 +1,96 @@
+name: PP Carousel
+description: Displays a Title, Image, and Text on the front end.
+type: particle
+icon: fa-address-card
+
+form:
+  fields:
+    enabled:
+      type: input.checkbox
+      label: Enabled
+      description: Globally enable to the particles.
+      default: true
+    title:
+      type: separator.note
+      class: alert alert-info
+      content: 'Czastka ładuje zasoby zewnętrzne z cdn <ul><li>botstrap 4.3.1</li><li>slick carousel 1.9.0 css i js</li></ul>'
+    title:
+      type: input.text
+      label: Title
+      description: Customize the section title text.
+
+    imagebg:
+      type: input.imagepicker
+      label: Image Background
+      description: Select desired image. 
+    imagebgalt:
+      type: input.text
+      label: Image Background alt
+      description: Add image background alt.   
+
+    css.class:
+      type: input.text
+      label: Class
+      description: CSS class name for the particle.
+
+    items:
+      type: collection.list
+      array: true
+      label: Carousel PP Items
+      description: Create each Carousel PP item to display.
+      value: name
+      ajax: true
+
+      fields:
+        .class:
+          type: input.selectize
+          label: CSS Classes
+          description: CSS class names for the individual item.
+        .name:
+          type: input.text
+        .image:
+          type: input.imagepicker
+          label: Image
+          description: Select desired image.
+        .imagealt:
+          type: input.text
+          label: Image alt
+          description: Add image alt  
+        .title:
+          type: input.text
+          label: Title
+          description: Enter the title
+        .subTitle1:
+          type: input.text
+          label: Subtitle 1
+          description: Enter the subtitle 1
+        .desc1:
+          type: textarea.textarea
+          label: Description 1
+          description: Customize the description.
+          placeholder: Enter short description
+        
+        .subTitle2:
+          type: input.text
+          label: Subtitle 2
+          description: Enter the subtitle 2
+        .desc2:
+          type: textarea.textarea
+          label: Description 2
+          description: Customize the description.
+          placeholder: Enter short description
+
+        .subTitle3:
+          type: input.text
+          label: Subtitle 3
+          description: Enter the subtitle 2
+        .desc3:
+          type: textarea.textarea
+          label: Description 3
+          description: Customize the description.
+          placeholder: Enter short description
+        .disable:
+          type: input.checkbox
+          label: Disable
+          description: Disables the item on the front end.
+          default: false

@@ -1,0 +1,111 @@
+{% extends '@nucleus/partials/particle.html.twig' %}
+{% block stylesheets %}
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css"/>
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css"/>
+{% endblock %}
+{% block javascript %}
+	<script src="{{ url('https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js') }}"></script>
+{% endblock %}
+{% block particle %}
+	<div class="corousel-pp {{ particle.css.class }}">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="row sliderContainer">
+						<div class="controls">
+							<button class="prev ml-md-3">
+								<i class="fa fa-arrow-left"></i>
+							</button>
+							<button class="next mr-md-3">
+								<i class="fa fa-arrow-right"></i>
+							</button>
+						</div>
+						<div class="col-lg-4 col-md-5 px-lg-0 ml-lg-5 mr-lg-n5 ml-md-5 mr-md-n5">
+							<div class="imgContainer">
+								<div class="background">
+									<img src="{{ url(particle.imagebg)|e }}" alt="{{ particle.imagebgalt|e }}"/>
+								</div>
+								{% for item in particle.items %}
+									{% if not item.disable %}
+										<div class="image">
+											<img src="{{ url(item.image)|e }}" alt="{{ item.imagealt|e }}"/>
+										</div>
+									{% endif %}
+								{% endfor %}
+
+							</div>
+						</div>
+						<div class="col-lg-8 col-md-7 px-lg-0 ml-lg-n5 px-md-0 ml-md-n5">
+							<div class="wrapper pl-lg-5">
+								<div class="sliderWrapper">
+									<div class="slider">
+										{% for item in particle.items %}
+											{% if not item.disable %}
+												<div class="slide {{ item.class|e }}">
+													<div class="content pl-lg-5 pl-md-5">
+														{% if item.title %}
+															<h2 class="title">{{ item.title|raw }}</h2>
+														{% endif %}
+									
+														<div class="infoBlock">
+														{% if item.subTitle1 %}
+															<div class="subTitle">{{ item.subTitle1|raw }}</div>
+														{% endif %}
+														{% if item.desc1 %}
+															<div class="desc">{{ item.desc1|raw }}</div>
+														{% endif %}
+														</div>
+																												<div class="infoBlock">
+														{% if item.subTitle2 %}
+															<div class="subTitle">{{ item.subTitle2|raw }}</div>
+														{% endif %}
+														{% if item.desc2 %}
+															<div class="desc">{{ item.desc2|raw }}</div>
+														{% endif %}
+														
+														{% if item.subTitle3 %}
+															<div class="subTitle">{{ item.subTitle3|raw }}</div>
+														{% endif %}
+														{% if item.desc3 %}
+															<div class="desc">{{ item.desc3|raw }}</div>
+														{% endif %}
+														</div>
+
+													</div>
+												</div>
+											{% endif %}
+										{% endfor %}
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}
+{% set corousel_pp %}$(document).ready(function() {
+  var getActiveSlideIndex = function() {
+    return $(".slider").slick("slickCurrentSlide");
+  };
+
+  var addActiveClassToImage = function() {
+    $(".imgContainer .image")
+      .removeClass("active")
+      .eq(getActiveSlideIndex())
+      .addClass("active");
+  };
+  var sliderFunc = function() {
+    $(".slider").slick({
+      prevArrow: ".controls .prev",
+      nextArrow: ".controls .next",
+      fade: true
+    });
+    addActiveClassToImage();
+  };
+  sliderFunc();
+  $(".slider").on("afterChange", function() {
+    addActiveClassToImage();
+  });
+});{% endset %}{% do gantry.document.addInlineScript(corousel_pp, 0, 'footer') %}

@@ -1,0 +1,191 @@
+@import url("https://fonts.googleapis.com/css?family=Gugi");
+@function rem($value) {
+  @return unquote(($value/1px)/16+"rem");
+}
+$fontFamily: "Gugi", cursive;
+
+$background: #121921;
+$imageBackground: #f2545b;
+$white: #ffffff;
+body {
+  font-family: $fontFamily;
+  background-color: lighten($background, 70%);
+  height: 100vh;
+}
+.sliderContainer {
+  position: relative;
+  margin-top: rem(50px);
+  margin-bottom: rem(50px);
+  .controls {
+    position: absolute;
+    z-index: 500;
+    height: 0;
+    width: 100%;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    button {
+      height: rem(50px);
+      width: rem(50px);
+      position: relative;
+      top: 50%;
+      transform: translateY(-50%);
+      border-radius: rem(500px);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: none;
+      background-color: darken($white, 10%);
+      color: $background;
+      outline: 0;
+      font-size: rem(24px);
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
+    }
+  }
+}
+
+.sliderContainer {
+  .imgContainer {
+    max-height: rem(450px);
+    min-height: rem(400px);
+    position: relative;
+    padding: rem(20px);
+    border-radius: rem(10px);
+    overflow: hidden;
+    .background {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      margin: auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1;
+      background-color: $imageBackground;
+      padding: rem(20px);
+      img {
+        max-height: 100%;
+        opacity: 0.15;
+      }
+    }
+    .image {
+      height: 100%;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      left: 0;
+      margin: auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 3;
+      padding: rem(20px);
+      img {
+        max-height: 100%;
+        max-width: 100%;
+        transform: translateX(-50px);
+        opacity: 0;
+        transition: all ease 0.25s;
+      }
+      &.active {
+        z-index:4;
+        img {
+          transform: translateX(0px);
+          opacity: 1;
+        }
+      }
+    }
+  }
+}
+
+.sliderContainer {
+  .wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    z-index: 2;
+    top: 50%;
+    transform: translateY(-50%);
+    color: $white;
+    border-radius: rem(10px);
+    .content {
+      padding: rem(20px);
+
+      display: flex;
+      flex-direction: column;
+      .title {
+        font-size: rem(32px);
+        color: $white;
+        text-transform: uppercase;
+      }
+      .infoBlock {
+        margin: rem(4px) rem(0px);
+        .subTitle {
+          font-size: rem(22px);
+          color: lighten($imageBackground, 10%);
+          display: inline-flex;
+          position: relative;
+          &::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 50%;
+            height: 0;
+            border-bottom: rem(1px) solid $white;
+          }
+        }
+        .desc {
+          font-size: rem(16px);
+          display: flex;
+          margin: rem(4px) 0;
+          color: darken($white, 10%);
+        }
+      }
+    }
+  }
+}
+
+.sliderContainer {
+  .slick-track {
+    display: flex;
+  }
+  .slick-slide {
+    > div {
+      position: relative;
+      transform: rotateY(180deg);
+      transition: all ease 0.5s;
+      background-color: $background;
+      border-radius: rem(10px);
+    }
+    &.slick-active {
+      > div {
+        transform: rotateY(0deg);
+      }
+    }
+  }
+}
+
+
+@media (min-width: 768px) {
+  .sliderContainer {
+    .slick-track {
+      align-items: center;
+    }
+  }
+}
+
+
+@media (min-width: 992px) {
+  .sliderContainer {
+    .slick-track {
+      align-items: center;
+    }
+  }
+}
