@@ -27,7 +27,15 @@ form:
       type: input.text
       label: Image Background alt
       description: Add image background alt.   
-
+    autoplay:
+      type: input.checkbox
+      label:  Autoplay
+      description: Autoplay slideshow.
+    autoplayspeed:
+      type: input.number
+      label:  Autoplay speed
+      description: Autoplay Set speed in miniseconds.
+      default: 3000
     css.class:
       type: input.text
       label: Class

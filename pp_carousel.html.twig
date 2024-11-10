@@ -85,7 +85,8 @@
 		</div>
 	</div>
 {% endblock %}
-{% set corousel_pp %}$(document).ready(function() {
+{% set corousel_pp %}
+$(document).ready(function() {
   var getActiveSlideIndex = function() {
     return $(".slider").slick("slickCurrentSlide");
   };
@@ -96,16 +97,25 @@
       .eq(getActiveSlideIndex())
       .addClass("active");
   };
+  console.log({{particle.autoplay}});
   var sliderFunc = function() {
     $(".slider").slick({
       prevArrow: ".controls .prev",
       nextArrow: ".controls .next",
-      fade: true
-    });
+      fade: true,
+	  {% if particle.autoplay  %}
+      autoplay: true,
+      {% endif %}
+	  {% if particle.autoplayspeed  %}
+      autoplaySpeed: {{particle.autoplayspeed}},
+      {% endif %}
+    });	
     addActiveClassToImage();
   };
   sliderFunc();
   $(".slider").on("afterChange", function() {
     addActiveClassToImage();
   });
-});{% endset %}{% do gantry.document.addInlineScript(corousel_pp, 0, 'footer') %}
+});
+{% endset %}
+{% do gantry.document.addInlineScript(corousel_pp, 0, 'footer') %}
